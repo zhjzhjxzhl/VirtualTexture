@@ -18,7 +18,7 @@ struct VTV2f
 // w: mipmap level bias
 float4 _VTFeedbackParam;
 
-// xy: page count
+// xy: page count y是1/page count
 // z:  max mipmap level
 float4 _VTPageParam;
 
@@ -46,7 +46,7 @@ VTV2f VTVert(VTAppdata v)
 
 float2 VTTransferUV(float2 uv)
 {
-	float2 uvInt = uv - frac(uv * _VTPageParam.x) * _VTPageParam.y;
+	float2 uvInt = uv - frac(uv * _VTPageParam.x) * _VTPageParam.y;//得到的是以1/64步进的小数
 	fixed4 page = tex2D(_VTLookupTex, uvInt) * 255;
 	float2 inPageOffset = frac(uv * exp2(_VTPageParam.z - page.b));
 	float2 inTileOffset = inPageOffset * _VTTileParam.y + _VTTileParam.x;

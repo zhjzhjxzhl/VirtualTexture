@@ -67,7 +67,7 @@ namespace VirtualTexture
         public RenderTexture DebugTexture { get; private set; }
 
 		/// <summary>
-		/// 页表尺寸.
+		/// 页表尺寸.横向和纵向，各多少个分块
 		/// </summary>
 		public int TableSize { get { return m_TableSize; } }
 
